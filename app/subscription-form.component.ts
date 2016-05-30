@@ -5,5 +5,7 @@ import { Component } from 'angular2/core';
     templateUrl: 'app/templates/subscription-form.component.html'
 })
 export class SubscriptionForm {
-    
+    onSubmit(form){
+        console.log(form);
+    }
 }
