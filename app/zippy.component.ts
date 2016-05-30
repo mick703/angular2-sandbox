@@ -2,7 +2,7 @@ import { Component, Input } from 'angular2/core';
 
 @Component({
     selector: 'zippy',
-    template: `
+    template: ` 
         <div class="panel panel-default">
             <div class="panel-heading" 
             (click)="toggleBody()">
