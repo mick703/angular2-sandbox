@@ -25,6 +25,10 @@ export class SignUpFormComponent {
     // });
     
     signup() {
+        //Validation errors
+        this.form.find('username').setErrors({
+            invalidLogin: true
+        })
         console.log(this.form.value);
     }
     
