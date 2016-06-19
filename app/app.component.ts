@@ -1,14 +1,12 @@
 import {Component} from 'angular2/core';
 import {UpdatePasswordFormComponent} from './update-password-form.component'
+import {GithubUserComponent} from './github-user.component';
 
 @Component({
     selector: 'my-app',
-    directives: [UpdatePasswordFormComponent],
+    directives: [GithubUserComponent],
     template: `
-        <div class="container">
-            <h1>Update Password</h1>
-            <update-password-form></update-password-form>
-        </div>
+        <github-user>
     `
 })
 export class AppComponent {
