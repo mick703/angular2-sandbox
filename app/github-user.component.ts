@@ -8,6 +8,8 @@ import {OnInit} from 'angular2/core';
     template: `
     
     <div id="profile" class="container">
+
+        <div *ngIf="isError" class="alert alert-danger">{{errorMessage}}</div>   
         <div id="profile">
             <i *ngIf="loading" class="fa fa-spinner fa-spin fa-3x"></i>
             <div *ngIf="!loading">
@@ -37,16 +39,24 @@ export class GithubUserComponent implements OnInit{
     _userProfile: Object;
     _followers: any[];
     loading = true;
+    isError = false;
+    errorMessage:string;
 
     constructor(private _githubUserService: GithubUserService) {
 
     }
 
     ngOnInit(){
-        this._githubUserService.getProfile('octocat').subscribe(result => {
+        this._githubUserService.getProfile('mick703').subscribe(result => {
             this._userProfile = result[0];
             this._followers = result[1];
-            this.loading = false;   
-        });
+               
+        }, 
+        error => {
+            this.isError = true;
+            this.errorMessage = JSON.parse(error._body).message;
+            this.loading = false;
+        }, 
+        () => {this.loading = false;});
     }
 }
