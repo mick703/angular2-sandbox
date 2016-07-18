@@ -1,13 +1,28 @@
 import {Component} from 'angular2/core';
-import {UpdatePasswordFormComponent} from './update-password-form.component'
-import {GithubUserComponent} from './github-user.component';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
+import { NavbarComponent } from './navbar.component';
+import { HomeComponent } from './home.component';
+import { UsersComponent } from './users.component';
+import { PostsComponent } from './posts.component';
 
+@RouteConfig([
+    {path: '/', name: 'Home', component: HomeComponent, useAsDefault: true},
+    {path: '/users', name: 'Users', component: UsersComponent},
+    {path: '/posts', name: 'Posts', component: PostsComponent},
+    {path: '/*other', name: 'Others', redirectTo: ['Home']}
+])
 @Component({
     selector: 'my-app',
-    directives: [GithubUserComponent],
     template: `
-        <github-user>
-    `
+        <navbar></navbar>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    `,
+    directives: [
+        NavbarComponent, 
+        ROUTER_DIRECTIVES
+    ]
 })
 export class AppComponent {
 }
